@@ -1,3 +1,5 @@
+[![Travis](https://travis-ci.org/pmoelgaard/html_to_pdf_conversion.svg)](Travis)
+
 # html_to_pdf_conversion
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/html_to_pdf_conversion`. To experiment with that code, run `bin/console` for an interactive prompt.
@@ -5,7 +7,6 @@ Welcome to your new gem! In this directory, you'll find the files you need to be
 TODO: Delete this and the text above, and describe your gem
 
 ## Installation
-
 Add this line to your application's Gemfile:
 
 ```ruby
