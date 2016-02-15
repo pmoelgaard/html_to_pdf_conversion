@@ -4,6 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'html_to_pdf_conversion/version'
 
 Gem::Specification.new do |spec|
+
   spec.name = "html_to_pdf_conversion"
   spec.version = PDFlayer::VERSION
   spec.authors = ["Peter Andreas Moelgaard"]
