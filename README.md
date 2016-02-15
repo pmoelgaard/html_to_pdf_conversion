@@ -1,42 +1,192 @@
 [![Travis](https://travis-ci.org/pmoelgaard/html_to_pdf_conversion.svg)](Travis)
 
 # html_to_pdf_conversion
+Node JavaScript wrapper for [the pdflayer API](https://pdflayer.com/).   
+Conversion API for Developers. Create highly customizable PDFs from URLs & HTML
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/html_to_pdf_conversion`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+---
 
 ## Installation
+
 Add this line to your application's Gemfile:
 
-```ruby
+```
 gem 'html_to_pdf_conversion'
+
 ```
 
 And then execute:
 
-    $ bundle
+```
+$ bundle
+
+```
 
 Or install it yourself as:
 
-    $ gem install html_to_pdf_conversion
+```
+$ gem install html_to_pdf_conversion
+
+```
+
+---
+
+## Configuration
+
+Before using the pdflayer API client you have to setup your account and obtain your API Access Key.  
+You can get it by signing up at [https://pdflayer.com/product](https://pdflayer.com/product).
+
+---
+
+## API Overview
+All endpoints in the public API is available through this library.
+
+- convert
+
+---
 
 ## Usage
 
-TODO: Write usage instructions here
+The general API is documented here: [https://pdflayer.com/documentation](https://pdflayer.com/documentation).  
+You can find parameters, result set definitions and status codes documented here as well.
 
-## Development
+In the examples directory you can find demos and samples of general usage of all the API functions.
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### Setup
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```
+@client = PDFlayer::Client.new( [access_key], [secret_key] )
 
-## Contributing
+```
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/html_to_pdf_conversion. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+#### Required Parameters
 
+###### access_key
+Your unique key that you can find on the dashboard of your account under the pdflayer account.
+
+###### secret_key
+A userdefined private key that you can find on the dashboard of your account under the pdflayer account, it's used to encrypt parameters to prevent unauthorised usage of your account.
+
+#### Optional Parameters
+
+###### Secure (only available for Basic, Pro and Enterprise accounts)
+Boolean value to indicate if the calls to the API should use a secure protocol or insecure (HTTP/HTTPS). Defaults to false (HTTP, insecure).
+
+---
+
+## Convert (simple case)
+Takes a URL and returns the captured image.
+
+###### Define Query
+Second we define an options object.
+All the options are documented here: [https://pdflayer.com/documentation](https://pdflayer.com/documentation)
+
+```
+options = PDFlayer::ConvertOptions.new()
+
+```
+
+###### Call Client
+We then place the actual call to the API, passing in the URL we wish to capture as PDF and the options we defined above.
+
+```
+response = @client.convert(document_url, options)
+
+``` 
+
+###### Response
+
+```
+[The binary content of the PDF file]
+
+```
+
+---
+
+## Convert (w. export)
+Takes a URL, saves the PDF to a local file defined by the export argument and returns a response object.
+
+###### Define Query
+
+We define an options object, and sets the ```export``` option.
+This option is specific to the RubyGem and not documented in the API found on pdflayer.
+
+```
+options = PDFlayer::ConvertOptions.new()
+options.export = '[local_file_system]/some_directory]/my_file.pdf'
+
+```
+
+###### Simple Request (using Callback)
+
+```
+response = @client.convert(document_url, options)
+
+```
+
+###### Response
+```
+{
+	"success": true,
+    "info": "The PDF file has been saved to your local file system",
+    "file_name": "path_to_local_file.pdf"
+}
+```
+
+---
+
+## Example Application
+
+In the [rootdir]/example directory there is a fully functional application which runs all requests against all the endpoints in the API, the examples above can be seen there as source code.
+
+The example application uses a process.env variable to hold the access key.
+
+---
+
+## Tests
+
+The tests are written for any NodeJS testing library, but has been run and targeted at the [https://mochajs.org/](https://mochajs.org/) testing library.
+
+In order to run the tests, the following environment variables needs to be set:
+
+```
+ACCESS_KEY = [access_key]
+SECRET_KEY = [secret_key]
+```
+
+
+---
+
+## Customer Support
+
+Need any assistance? [Get in touch with Customer Support](mailto:support@apilayer.net?subject=%pdflayer%5D).
+
+---
+
+## Updates
+Stay up to date by following [@apilayernet](https://twitter.com/apilayernet) on Twitter.
+
+---
+
+## Legal
+
+All usage of the languagelayer website, API, and services is subject to the [pdflayer Terms & Conditions](https://pdflayer.com/terms) and all annexed legal documents and agreements.
+
+---
+
+## Author
+Peter Andreas Moelgaard ([GitHub](https://github.com/pmoelgaard), [Twitter](https://twitter.com/petermoelgaard))
+
+---
 
 ## License
+Licensed under the The MIT License (MIT)
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+Copyright (&copy;) 2016 Peter Andreas Moelgaard & apilayer
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 

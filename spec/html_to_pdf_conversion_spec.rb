@@ -8,54 +8,48 @@ Dotenv.load
 
 describe PDFlayer do
 
+
   it 'has a version number' do
     expect(PDFlayer::VERSION).not_to be nil
   end
 
-  # it 'validates required access_key parameter for client' do
-  #   begin
-  #     @client = PDFlayer::Client.new()
-  #   rescue => e
-  #     expect(e.argument).equals('access_key')
-  #   end
-  # end
-  #
-  # it 'validates required secret_key for client' do
-  #   begin
-  #     @client = PDFlayer::Client.new('defunct_access_key')
-  #   rescue => e
-  #     expect(e.argument).equals('secret_key')
-  #   end
-  # end
 
-  # it 'checks for exported file' do
-  #
-  #   begin
-  #
-  #     # Declare the Client instance passing in the authentication parameters
-  #     @client = PDFlayer::Client.new()
-  #
-  #     # Set the URL to get as PDF, we take a random URL from Wikipedia
-  #     document_url = 'https://en.wikipedia.org/wiki/Special:Random'
-  #
-  #     # We declare the options
-  #     options = PDFlayer::ConvertOptions.new()
-  #     options.export = File.join('tmp', SecureRandom.uuid() +'.pdf')
-  #
-  #     # We make the call to convert
-  #     response = @client.convert(document_url, options)
-  #
-  #     expect(response).not_to be nil
-  #
-  #   rescue => e
-  #     puts e.inspect
-  #
-  #   ensure
-  #     # Clean Up
-  #
-  #   end
-  #
-  # end
+  it 'convert (simple) w. export' do
+
+    begin
+
+      # Declare the Client instance passing in the authentication parameters
+      @client = PDFlayer::Client.new(ENV['ACCESS_KEY'], ENV['SECRET_KEY'])
+
+      # Set the URL to get as PDF, we take a random URL from Wikipedia
+      document_url = 'https://en.wikipedia.org/wiki/Special:Random'
+
+      # We declare the options
+      options = PDFlayer::ConvertOptions.new()
+
+      # We then set the export option
+      options.export = File.join('tmp', SecureRandom.uuid() +'.pdf')
+
+      # We make the call to convert
+      response = @client.convert(document_url, options)
+
+      # First we check the response
+      expect(response).not_to be nil
+
+      # Then we check if the file exists has been successfully written to disk
+      file_exists = File.exist?(options.export)
+      expect(file_exists).to be true
+
+    rescue => e
+      puts e.inspect
+
+    ensure
+      # Clean up after the test and remove the file from disk
+      File.delete(options.export);
+
+    end
+
+  end
 
 end
 

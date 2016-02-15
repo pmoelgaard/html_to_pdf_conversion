@@ -30,6 +30,11 @@ module PDFlayer
 
     def convert(document_url, options = {})
 
+      if document_url.nil?
+        raise PDFlayer::MissingArgumentException.new 'document_url'
+        return
+      end
+
       # Create a shallow copy so we don't manipulate the original reference
       query = options.dup
 
@@ -58,16 +63,31 @@ module PDFlayer
         res.inspect
 
         # If we have an export option passed in, we save it to local file system
-        if !options.export.nil?
+        if options.export.nil?
+
+          # We just return the parsed binary response
+          return res.parsed_response
+
+        else
+
           begin
+
             File.open(options.export, 'a+') do |file|
+
               file.write(res.body)
+
+              result = {
+                  success: true,
+                  info: "The PDF file has been saved to your local file system",
+                  file_name: options.export
+              }
+              return result
+
             end
+
           end
         end
 
-        # Finally we return the parsed binary response
-        return res.parsed_response
 
       rescue => e
         puts e.inspect

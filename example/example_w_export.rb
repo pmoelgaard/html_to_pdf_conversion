@@ -12,11 +12,12 @@ document_url = 'https://en.wikipedia.org/wiki/Special:Random'
 
 # We declare the options
 options = PDFlayer::ConvertOptions.new()
+options.export = File.join('tmp', SecureRandom.uuid() +'.pdf')
 
 # We make the call to convert
 response = @client.convert(document_url, options)
 
 # If its a success, we print a message to the user
 if ! response.nil?
-  puts 'SUCCESS : PDF fetched...'+ response.length
+  puts 'SUCCESS : PDF fetched...'+ JSON(response)
 end
