@@ -1,7 +1,7 @@
 [![Travis](https://travis-ci.org/pmoelgaard/html_to_pdf_conversion.svg)](Travis)
 
 # html_to_pdf_conversion
-Node JavaScript wrapper for [the pdflayer API](https://pdflayer.com/).   
+Node JavaScript wrapper for [the pdflayer API](https://pdflayer.com/).
 Conversion API for Developers. Create highly customizable PDFs from URLs & HTML
 
 ---
