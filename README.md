@@ -145,7 +145,8 @@ The example application uses a process.env variable to hold the access key.
 
 ## Tests
 
-The tests are written for any NodeJS testing library, but has been run and targeted at the [https://mochajs.org/](https://mochajs.org/) testing library.
+The tests are written using the rspec testing library.  
+**RSpec** [http://rspec.info/](http://rspec.info/)
 
 In order to run the tests, the following environment variables needs to be set:
 

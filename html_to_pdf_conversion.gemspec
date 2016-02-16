@@ -11,8 +11,8 @@ Gem::Specification.new do |spec|
   spec.email = ["github@petermolgaard.com"]
   spec.homepage = "https://github.com/pmoelgaard/html_to_pdf_conversion"
 
-  spec.summary = "Node JavaScript wrapper for the pdflayer API"
-  spec.description = "Conversion API for Developers. Create highly customizable PDFs from URLs & HTML"
+  spec.description = "Ruby Library for the pdflayer API, a web service that automates HTML to PDF document conversion, https://pdflayer.com"
+  spec.summary = "Conversion API for Developers. Create highly customizable PDFs from URLs & HTML"
   spec.license = "MIT"
 
   spec.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

@@ -1,3 +1,4 @@
+require 'uri'
 require 'digest'
 require "httparty"
 require "hashable"
@@ -46,7 +47,7 @@ module PDFlayer
       # Populate the Query
       query.access_key = @access_key
       query.secret_key = secret_key
-      query.document_url = document_url
+      query.document_url = URI.escape(document_url)
 
       # We then create the Request
       req = ConvertRequest.new(query)
