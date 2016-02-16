@@ -13,18 +13,18 @@ module PDFlayer
 
     base_uri 'api.pdflayer.com/api'
 
-    def initialize(access_key, secret_key)
+    def initialize(access_key, secret_keyword)
 
       if access_key.nil?
         raise PDFlayer::MissingArgumentException.new 'access_key'
       end
 
-      if secret_key.nil?
-        raise PDFlayer::MissingArgumentException.new 'secret_key'
+      if secret_keyword.nil?
+        raise PDFlayer::MissingArgumentException.new 'secret_keyword'
       end
 
       @access_key = access_key
-      @secret_key = secret_key
+      @secret_keyword = secret_keyword
 
     end
 
@@ -39,9 +39,9 @@ module PDFlayer
       # Create a shallow copy so we don't manipulate the original reference
       query = options.dup
 
-      # Generate the SecretKey for the request
+      # Generate the SecretKeyword for the request
       md5 = Digest::MD5.new
-      md5.update document_url + @secret_key
+      md5.update document_url + @secret_keyword
       secret_key = md5.hexdigest
 
       # Populate the Query

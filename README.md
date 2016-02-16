@@ -55,7 +55,7 @@ In the examples directory you can find demos and samples of general usage of all
 ### Setup
 
 ```
-@client = PDFlayer::Client.new( [access_key], [secret_key] )
+@client = PDFlayer::Client.new( [access_key], [secret_keyword] )
 
 ```
 
@@ -152,7 +152,7 @@ In order to run the tests, the following environment variables needs to be set:
 
 ```
 ACCESS_KEY = [access_key]
-SECRET_KEY = [secret_key]
+SECRET_KEYWORD = [secret_keyword]
 ```
 
 

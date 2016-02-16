@@ -24,7 +24,7 @@ describe PDFlayer do
     begin
 
       # Declare the Client instance passing in the authentication parameters
-      @client = PDFlayer::Client.new(ENV['ACCESS_KEY'], ENV['SECRET_KEY'])
+      @client = PDFlayer::Client.new(ENV['ACCESS_KEY'], ENV['SECRET_KEYWORD'])
 
       # Set the URL to get as PDF, we take a random URL from Wikipedia
       document_url = 'https://en.wikipedia.org/wiki/Special:Random'
@@ -51,7 +51,7 @@ describe PDFlayer do
     begin
 
       # Declare the Client instance passing in the authentication parameters
-      @client = PDFlayer::Client.new(ENV['ACCESS_KEY'], ENV['SECRET_KEY'])
+      @client = PDFlayer::Client.new(ENV['ACCESS_KEY'], ENV['SECRET_KEYWORD'])
 
       # Set the URL to get as PDF, we take a random URL from Wikipedia
       document_url = 'https://en.wikipedia.org/wiki/Special:Random'
