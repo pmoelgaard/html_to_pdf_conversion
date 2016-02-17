@@ -73,6 +73,9 @@ module PDFlayer
 
           begin
 
+            # Ensure the path exists before we write
+            FileUtils.mkdir_p(File.dirname(options.filename))
+
             File.open(options.export, 'a+') do |file|
 
               file.write(res.body)

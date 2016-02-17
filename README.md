@@ -110,6 +110,7 @@ Takes a URL, saves the PDF to a local file defined by the export argument and re
 
 We define an options object, and sets the ```export``` option.
 This option is specific to the RubyGem and not documented in the API found on pdflayer.
+If the directory doesn't exist, it will be created.
 
 ```
 options = PDFlayer::ConvertOptions.new()
